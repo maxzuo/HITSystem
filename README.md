@@ -4,6 +4,7 @@ A collection of scripts used for VIP Concussion Connect to process HITS data.
 ## Using `convertHIT.py`
 
 `convertHIT.py` is a Python script which can be run from the command line. To do so, type:
+
     `python convertHIT.py "[raw file path]" "[key file path]" "[destination file path]"`
 
 Be sure that your file paths are surrounded in quotation marks.
