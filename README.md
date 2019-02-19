@@ -16,7 +16,7 @@ Be sure that your file paths are surrounded in quotation marks.
 Your "keys" .tsv file should have the following setup:
 
 * The first column should be the title of data elements you want in your **processed** .tsv file.
-* The second column should be the title of data elements in the **raw** file.
+* The second column should be the title of data elements in the **raw** file which correspond to those in the first column.
 
 ### Get Started
 1. Clone the repository
