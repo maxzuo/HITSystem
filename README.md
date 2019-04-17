@@ -52,7 +52,7 @@ Your "keys" .tsv file should have the following setup:
 * The first column should be the title of data elements you want in your **processed** .tsv file.
 * The second column should be the title of data elements in the **raw** file which correspond to those in the first column.
 
-### Note: `convertHIT.py` is currently only supported by Python 2.x. **HITSystem** will have full support for Python3 before January 1, 2020.
+#### Note: `convertHIT.py` is currently only supported by Python 2.x. **HITSystem** will have full support for Python3 before January 1, 2020.
 
 ### Get Started
 1. Clone the repository
