@@ -82,6 +82,16 @@ def process(tsv):
 			pass
 	return tsv
 
+def process_csv(csv):
+	csv = [line.replace("\r\n", "").replace("\n", "") for line in csv]
+	csv = map(lambda line: line.split(","), csv)
+	for line in csv:
+		try:
+			while True: line.remove("")
+		except:
+			pass
+	return csv
+
 
 
 if __name__ == "__main__":
