@@ -14,7 +14,7 @@ Ex:
 * CSV file path. Path to the CSV file you wish to add as a table to your database.
 * SQLite databsae file path. File path to the SQLite database you wish to add to.
 * Data element types. SQLite types which correlate to each column in the CSV file.
-    * Supported types include: int, float, varchar, char. *Support for date and time are coming soon.*
+    * Supported types include: int, float, varchar, char. *Support for date and time have been implemented in the last commit. Bugs are very plausible. Contact me if you believe you've found an issue.*
 
 ### Tips & Debugging:
 * Be sure that your file paths and strings are surrounded in quotation marks.
@@ -26,6 +26,8 @@ Ex:
 2. Move the `CSVtoSQL.py` to the directory containing your key file and raw file.
 3. Go into your command line tool, change directories to the directory containing your files.
 4. Run `CSVtoSQL.py` as shown above. 
+
+For a better list of helpful tips for using **SQL** and `CSVtoSQL.py`, please visit my documentation [here](https://docs.google.com/document/d/1QWWgTiPOcHMtz02fc4ArwdTrNQAXzWXFoKZ2Ay5BPsA/edit?usp=sharing).
 
 ## Using `convertHIT.py`
 
