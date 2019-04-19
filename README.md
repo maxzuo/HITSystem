@@ -12,7 +12,7 @@ Ex:
     python CSVtoSQL.py -c "calculations.csv" -db "hits.db" -ct "int float varchar(255) date time" -t "PRACTICES"
 
 * CSV file path. Path to the CSV file you wish to add as a table to your database.
-* SQLite databsae file path. File path to the SQLite database you wish to add to.
+* SQLite database file path. File path to the SQLite database you wish to add to.
 * Data element types. SQLite types which correlate to each column in the CSV file.
     * Supported types include: int, float, varchar, char. *Support for date and time have been implemented in the last commit. Bugs are very plausible. Contact me if you believe you've found an issue.*
 
