@@ -27,6 +27,7 @@ database = None
 
 def format(line, coltypes):
 	format.visited += 1
+	format.visitedb += 1
 	formatted = []
 	for (x, y) in zip(line, coltypes):
 		if x == "" or x.upper() == "N/A":
@@ -47,6 +48,7 @@ def format(line, coltypes):
 			accepted = False
 			for i in xrange(len(x), 1, -1):
 				try:
+					# print(x[0:i])
 					formatted.append(datetime.strptime(x[0:i], y[1:-1]))
 					accepted = True
 					if format.visited < 2 and i != len(x):
@@ -61,15 +63,16 @@ def format(line, coltypes):
 			y = y.replace("time", '')
 			r = re.compile('(\\(.*\\))', re.IGNORECASE|re.DOTALL).search(y)
 			if r is None or len(r.groups()) > 1:
-				raise(Exception("When using time, you provide a valid input for the formatting with the parentheses:\n%s" % y))
+				raise(Exception("When using time, you need provide a valid input for the formatting with the parentheses:\n%s" % y))
 			accepted = False
 			for i in xrange(len(x), 1, -1):
 				try:
-					formatted.append(datetime.strptime(x[0:i], y[1:-1]).strftime("%H:%M:%S"))
+					# print(x[0:i])
+					formatted.append(datetime.strptime(x[0:i], y[1:-1]))
 					accepted = True
-					if format.visited < 2 and i != len(x):
-						print("Seems like your date element isn't an exact match to your formatter. To drastically speed up this process, please remove any leading/trailing characters")
-						format.visited += 1
+					if format.visitedb < 2 and i != len(x):
+						print("Seems like the time element isn't an exact match to your formatter. To drastically speed up this process, please remove any leading/trailing characters")
+						format.visitedb += 1
 					break
 				except Exception as e:
 					continue
@@ -93,6 +96,8 @@ def create_table(tableName, cols, fail=False):
 			x = input("Looks like the table already exists. You can choose to overwrite the table or insert to the current table. Overwrite? (y/n)\n").lower() 
 			if "n" == x or "y" == x:
 				overwrite = x
+			else:
+				print("Input unrecognized. Please type only 'y' or 'n' with nothing else.\n")
 		if overwrite == 'y':
 			if not fail:
 				
@@ -109,6 +114,7 @@ def create_table(tableName, cols, fail=False):
 
 if __name__ == "__main__":
 	format.visited = 0
+	format.visitedb = 0
 	print('')
 	
 	tableName = None
@@ -156,9 +162,9 @@ if __name__ == "__main__":
 
 	cols = reduce(lambda x, y: x + ", " + (y.split(" ")[0] + " date" if " date" in y else y.split(" ")[0] + " time" if " time" in y else y), map(lambda a: a[0] + " " + a[1], zip(cols, coltypes)))
 
+	csvProcessed = map(lambda line: format(line, coltypes), csv)
 	create_table(tableName, cols)
 	
-	csvProcessed = map(lambda line: format(line, coltypes), csv)
 	for line in csvProcessed:
 		insert_command = "INSERT INTO %s VALUES (%s);" % (tableName, reduce(lambda x, y: x + ", " + y, ["?" for i in xrange(len(coltypes))]))
 		c.execute(insert_command, line)
